@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Store{% endblock title %}
+{% block content %}
+ <div class="product-big-title-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="product-bit-title text-center">
+                        <h2>Store</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+    <div class="single-product-area">
+        <div class="zigzag-bottom"></div>
+        <div class="container">
+            <div class="row">
+                {% for item in item_list %}
+                    <div class="col-md-3 col-sm-6">
+                    <div class="single-shop-product">
+                        <div class="product-upper">
+                            <a href="{{ item.get_absolute_url }}"><img src="{{item.image.url}}" alt=""></a>
+                        </div>
+                        <h5>{{ item.get_category_display }}</h5>
+                        <h2>
+                            <strong>
+                                <a href="{{ item.get_absolute_url }}" class="dark-grey-text">{{ item.title }}
+                                <span class="badge badge-pill {{ item.get_label_display }}-color">NEW</span>
+                                </a>
+                            </strong>
+                        </h2>
+                        <div class="product-carousel-price">
+                            {% if item.discount_price %}
+                                <ins>${{ item.discount_price }}</ins>
+                            {% else %}
+                                <ins>${{ item.price }}</ins> 
+                            {% endif %}
+                        </div>  
+                                            
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            
+            <!--Pagination-->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="product-pagination text-center">
+                        <nav class="d-flex justify-content-center wow fadeIn">
+                          <ul class="pagination pg-blue">
+                            <li class="page-item">
+                              <a href="#" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                              </a>
+                            </li>
+                            <li class="page-item active">
+                                <a class="page-link" href="#">1</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="#">2</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="#">3</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="#">5</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="#">6</a>
+                            </li>
+                            <li>
+                              <a href="#" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                              </a>
+                            </li>
+                          </ul>
+                        </nav>                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Search{% endblock title %}
+
+{% block content %}
+<br>
+<br>
+    <div class="container">
+        <h2>Search Results</h2>
+        {% for result in queryset  %}
+            <h3><a href="{{ result.get_absolute_url }}">{{ result.title }}</a></h3>
+            <p>{{ result.description }}</p>
+        {% empty %}
+            <h4 style="color: #f06543;">Not Found!</h4>
+        {% endfor %}
+    </div>
+<br>
+<br>
+{% endblock content %}
